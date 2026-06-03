@@ -15,7 +15,7 @@
 1. 打开 Chrome / Edge 的扩展管理页面。
 2. 开启开发者模式。
 3. 选择“加载已解压的扩展程序”。
-4. 选择本目录：`C:\Users\徐zx\Documents\Codex\2026-06-03\csdn-obsidian-2`。
+4. 选择本目录：`csdn-obsidian-2`。
 
 ## 使用
 
