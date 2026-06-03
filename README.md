@@ -50,9 +50,3 @@ CSDN 文章里常有代码块、表格、图片、内联代码和嵌套列表。
 
 扩展只声明 `*.csdn.net` 的 host 权限，并使用内容脚本读取当前页面 DOM。浏览器扩展不能任意写入本地 Obsidian vault，只能通过下载、剪贴板、Obsidian URI 或 Native Messaging 与本地应用协作。
 
-## 后续可增强
-
-- 增加批量导出收藏夹或搜索结果页。
-- 通过 Obsidian 插件接收 Markdown 和图片附件，实现真正的本地化导入。
-- 引入 Readability / Turndown 作为可替换转换引擎。
-- 为常见 CSDN 文章模板添加回归测试样例。
