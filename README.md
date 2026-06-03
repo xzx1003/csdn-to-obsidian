@@ -4,11 +4,13 @@
 
 ## 功能
 
-- 在 `*.csdn.net` 页面注入内容脚本，自动识别正文区域。
-- 抽取标题、作者、发布时间、原文链接、正文、代码块、表格和图片链接。
-- 生成带 YAML frontmatter 的 Markdown。
-- 支持复制 Markdown、下载 `.md` 文件。
-- 支持通过 `obsidian://new` 打开 Obsidian，并先把 Markdown 放入剪贴板，避免超长 URI 失败。
+打开任何 *.csdn.net 的文章页面后，它能自动找到文章的主体内容。
+抓取标题、作者、发布时间、原文链接、正文、代码块、表格和图片。
+生成带 YAML frontmatter 的 Markdown（YAML frontmatter 就是文件最上面用 --- 包起来的那段元信息，比如标题、标签、创建时间，Obsidian 能用它来管理笔记）。
+支持三种操作：
+复制成 Markdown 文本
+下载成 .md 文件
+打开 Obsidian 并自动把内容粘贴进去（通过剪贴板搞定，避免文章太长时链接失败）
 
 ## 安装
 
