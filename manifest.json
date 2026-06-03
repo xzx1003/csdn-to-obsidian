@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "CSDN to Obsidian",
+  "description": "Clip CSDN blog posts as Markdown and send them to Obsidian.",
+  "version": "0.1.0",
+  "action": {
+    "default_title": "CSDN to Obsidian",
+    "default_popup": "src/popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "clipboardWrite",
+    "downloads",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://*.csdn.net/*",
+    "https://*.csdn.net/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*.csdn.net/*",
+        "https://*.csdn.net/*"
+      ],
+      "js": [
+        "src/content-script.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSDN to Obsidian</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="panel">
+      <header class="header">
+        <div>
+          <h1>CSDN to Obsidian</h1>
+          <p id="pageState">正在读取当前页面</p>
+        </div>
+        <button id="refreshButton" class="icon-button" type="button" title="重新抓取" aria-label="重新抓取">
+          <span aria-hidden="true">↻</span>
+        </button>
+      </header>
+
+      <section class="summary" aria-live="polite">
+        <strong id="articleTitle">等待页面内容</strong>
+        <span id="articleMeta">-</span>
+      </section>
+
+      <section class="settings">
+        <label>
+          Obsidian vault
+          <input id="vaultInput" type="text" autocomplete="off" placeholder="留空则使用默认 vault">
+        </label>
+        <label>
+          文件夹
+          <input id="folderInput" type="text" autocomplete="off" placeholder="CSDN">
+        </label>
+        <label class="checkbox">
+          <input id="frontmatterInput" type="checkbox" checked>
+          <span>添加 YAML frontmatter</span>
+        </label>
+      </section>
+
+      <section class="actions">
+        <button id="copyButton" type="button">复制 Markdown</button>
+        <button id="downloadButton" type="button">下载 .md</button>
+        <button id="obsidianButton" type="button" class="primary">导入 Obsidian</button>
+      </section>
+
+      <pre id="preview" class="preview" aria-label="Markdown 预览"></pre>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
