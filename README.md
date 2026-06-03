@@ -1,19 +1,21 @@
 # CSDN to Obsidian
 
-一个 Manifest V3 浏览器扩展，用来把 CSDN 文章页抽取成 Markdown，并一键复制、下载或导入 Obsidian。
+一个 Manifest V3 浏览器扩展，用来把 CSDN 文章页抽取成 Markdown，并一键复制、下载或保存到 Obsidian vault。
 
 ## 功能
 
 打开任何 `*.csdn.net` 的文章页面后，它能自动找到文章的主体内容。
 抓取标题、作者、发布时间、原文链接、正文、代码块、表格和图片。
 生成带 YAML frontmatter 的 Markdown（YAML frontmatter 就是文件最上面用 `---` 包起来的那段元信息，比如标题、标签、创建时间，Obsidian 能用它来管理笔记）。
-支持三种操作：复制成 Markdown 文本，下载成 `.md` 文件，打开 Obsidian 并自动把内容粘贴进去（通过剪贴板搞定，避免文章太长时链接失败）。
+支持三种操作：复制成 Markdown 文本，下载成 `.md` 文件，直接保存到你授权过的 Obsidian vault 文件夹。
+
+从 `v0.2.0` 开始，扩展不再调用 `obsidian://` 链接，因此不会再弹出浏览器的“打开 Obsidian”协议确认框。
 
 ## 安装
 
 推荐下载 Release 里的安装包，而不是 GitHub 右上角 `Code -> Download ZIP` 的源码包：
 
-[下载 csdn-to-obsidian-v0.1.1.zip](https://github.com/xzx1003/csdn-to-obsidian/releases/download/v0.1.1/csdn-to-obsidian-v0.1.1.zip)
+[下载 csdn-to-obsidian-v0.2.0.zip](https://github.com/xzx1003/csdn-to-obsidian/releases/download/v0.2.0/csdn-to-obsidian-v0.2.0.zip)
 
 1. 下载上面的 zip。
 2. 解压。
@@ -36,8 +38,11 @@ README.md
 
 1. 打开一篇 CSDN 文章。
 2. 点击浏览器工具栏里的 `CSDN to Obsidian`。
-3. 可选填写 Obsidian vault 和目标文件夹。
-4. 点击“复制 Markdown”“下载 .md”或“导入 Obsidian”。
+3. 第一次使用“保存到 Vault”前，点击“选择”并授权你的 Obsidian vault 文件夹。
+4. 可选填写保存子文件夹，比如 `CSDN`。
+5. 点击“复制 Markdown”“下载 .md”或“保存到 Vault”。
+
+保存到 Vault 时，扩展会在目标文件夹里创建 `.md` 文件。如果同名文件已经存在，会自动追加 `(2)`、`(3)` 这类后缀，避免覆盖已有笔记。
 
 ## 打包
 
@@ -69,12 +74,12 @@ CSDN 文章里常有代码块、表格、图片、内联代码和嵌套列表。
 
 ### 4. 图片本地化
 
-当前版本保留远程图片链接。若要把图片下载到 Obsidian 附件目录，需要处理跨域读取、文件命名、下载队列、附件路径重写、Obsidian vault 路径不可直接由浏览器扩展访问等问题。更可靠的方案通常需要配合 Obsidian 插件或本地 Native Messaging host。
+当前版本保留远程图片链接。若要把图片下载到 Obsidian 附件目录，需要处理跨域读取、文件命名、下载队列、附件路径重写等问题。更可靠的方案通常需要配合 Obsidian 插件或本地 Native Messaging host。
 
-### 5. Obsidian URI 长度限制
+### 5. 本地 Vault 写入权限
 
-长文章直接放进 `obsidian://new?content=...` 可能超过浏览器、系统或协议处理器的 URL 长度限制。因此扩展先把 Markdown 写入剪贴板，再调用 `obsidian://new?...&clipboard=true` 让 Obsidian 从剪贴板创建笔记。
+浏览器扩展不能默认任意写入本地文件。当前版本使用 Chromium 的 File System Access API：第一次需要手动选择并授权 Obsidian vault 文件夹，之后扩展会把授权句柄保存在 IndexedDB 中，导出时直接写入 `.md` 文件，不再唤起 `obsidian://` 协议确认弹窗。
 
 ### 6. 权限和安全边界
 
-扩展只声明 `*.csdn.net` 的 host 权限，并使用内容脚本读取当前页面 DOM。浏览器扩展不能任意写入本地 Obsidian vault，只能通过下载、剪贴板、Obsidian URI 或 Native Messaging 与本地应用协作。
+扩展只声明 `*.csdn.net` 的 host 权限，并使用内容脚本读取当前页面 DOM。Vault 写入必须由用户主动授权本地文件夹；如果浏览器不支持 File System Access API，可以继续使用复制或下载功能。

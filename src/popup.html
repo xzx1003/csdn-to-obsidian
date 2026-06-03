@@ -24,12 +24,18 @@
       </section>
 
       <section class="settings">
+        <div class="vault-picker">
+          <div>
+            <span>Vault 文件夹</span>
+            <strong id="vaultStatus">未选择</strong>
+          </div>
+          <div class="vault-actions">
+            <button id="chooseVaultButton" type="button">选择</button>
+            <button id="clearVaultButton" type="button">清除</button>
+          </div>
+        </div>
         <label>
-          Obsidian vault
-          <input id="vaultInput" type="text" autocomplete="off" placeholder="留空则使用默认 vault">
-        </label>
-        <label>
-          文件夹
+          保存到子文件夹
           <input id="folderInput" type="text" autocomplete="off" placeholder="CSDN">
         </label>
         <label class="checkbox">
@@ -41,7 +47,7 @@
       <section class="actions">
         <button id="copyButton" type="button">复制 Markdown</button>
         <button id="downloadButton" type="button">下载 .md</button>
-        <button id="obsidianButton" type="button" class="primary">导入 Obsidian</button>
+        <button id="saveVaultButton" type="button" class="primary">保存到 Vault</button>
       </section>
 
       <pre id="preview" class="preview" aria-label="Markdown 预览"></pre>

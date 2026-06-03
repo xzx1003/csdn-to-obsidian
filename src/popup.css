@@ -97,6 +97,52 @@ h1 {
   gap: 10px;
 }
 
+.vault-picker {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.vault-picker span,
+.vault-picker strong {
+  display: block;
+}
+
+.vault-picker span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.vault-picker strong {
+  margin-top: 3px;
+  overflow: hidden;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vault-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.vault-actions button {
+  min-height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0 9px;
+  background: #fff;
+  color: var(--text);
+  cursor: pointer;
+}
+
 label {
   display: grid;
   gap: 6px;
